@@ -29,12 +29,6 @@ body {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
-.mainTitle {
-  color:black;
-  font-size: 55px;
-  font-weight: bold;
-}
-
 .invisible {
   visibility: hidden;
 }
@@ -86,46 +80,10 @@ body {
   align-items: center;
 }
 
-/* #mainCardPomodoro {
-
-}
-
-#pomodoroTitle {
-
-}
-
-#pomodoroCurrTimer {
-
-}
-
-#currMin {
-
-}
-
-#currSec {
-
-} */
-
 #playButton {
   width: 80px;
   height: 80px;
 }
-
-/* #playPomodoro {
-
-}
-
-#pausePomodoro {
-
-}
-
-#resetPomodoro {
-
-}
-
-#settingsPomodoro {
-
-} */
 
 #timerSelection {
   display: flex;
@@ -141,7 +99,7 @@ body {
 #timerSelection>div>button {
   height: 100px;
   width: 130px;
-  color:#fff;
+  /* color:#fff; */
   display: inline-block;
   vertical-align: middle;
   user-select: none;
@@ -149,13 +107,15 @@ body {
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   padding: 0.5rem, 0.5rem;
   font-size: 1.5rem;
+  border: none;
+  border-radius:inherit;
 }
 
 #timerSelection>div>button>h2 {
   font-size: 15px;
 }
 
-#timerSelection>div button:hover{
+#timerSelection>div button:hover {
   background-color:rgb(224, 224, 224);
   color:#000;
 }
@@ -186,105 +146,6 @@ body {
   color: rgba(32, 32, 32, 0.95);
 }
 
-/* Miscellaneous */
-
-.form-check {
-  display: block;
-  min-height: 1.25rem;
-  padding-left: 1.5em;
-  margin-bottom: 0.125rem;
-}
-
-.mainCard .form-check-input {
-  display: none;
-}
-
-.form-check-input:checked[type=radio] {
-  background-color: rgb(255, 255, 255);
-  /* background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%272%27 fill=%27%23fff%27/%3e%3c/svg%3e"); */
-}
-
-.form-check-input:checked {
-  background-color: #fff;
-  border-color: #fff;
-}
-
-.form-check-input[type=radio] {
-  border-radius: 50%;
-}
-
-.form-check .form-check-input {
-  float: left;
-  margin-left: -1.5em;
-}
-
-.form-check-input {
-  width: 1em;
-  height: 1em;
-  margin-top: 0.125em;
-  vertical-align: top;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  border: 1px solid rgba(255,255,255,.95);
-  appearance: none;
-}
-
-input, button, select, optgroup, textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-input[type="radio" i] {
-  background-color: initial;
-  cursor: default;
-  appearance: auto;
-  box-sizing: border-box;
-  margin: 3px 3px 0px 5px;
-  padding: initial;
-  border: initial;
-}
-
-input {
-  writing-mode: horizontal-tb !important;
-  font-style: none;
-  font-variant-ligatures: none;
-  font-variant-caps: none;
-  font-variant-numeric: none;
-  font-variant-east-asian: none;
-  font-weight: none;
-  font-stretch: none;
-  font-size: none;
-  font-family: none;
-  text-rendering: auto;
-  color: fieldtext;
-  letter-spacing: normal;
-  word-spacing: normal;
-  line-height: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-  appearance: auto;
-  -webkit-rtl-ordering: logical;
-  cursor: text;
-  background-color: field;
-  margin: 0em;
-  padding: 1px 2px;
-  border-width: 2px;
-  border-style: inset;
-  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-  border-image: initial;
-}
-
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -295,4 +156,13 @@ input {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.active {
+  background-color:rgb(224, 224, 224);
+  color:#000;
+}
+
+.notActive {
+  color:#fff;
 }

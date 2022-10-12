@@ -2,7 +2,7 @@
 const playButton = document.querySelector('#playButton');
 const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
-const mainTitle = document.getElementById('pomodoroTitle');
+const mainTitle = document.getElementById('mainTitle');
 const timer = {
     pomodoro: .1,
     shortBreak: .1,
@@ -33,7 +33,7 @@ if (playButton) {
     });
 }
 
-// Handles change in timer selection 
+// Handles change between different timers
 function switchMode(mode) {
     timer.mode = mode;
     timer.remainingTime = {
@@ -55,11 +55,16 @@ function switchMode(mode) {
             break;
     }
 
+    // "Activates" a button to indicate which timer is live
     document
         .querySelectorAll('button[data-mode]')
         .forEach(e => e.classList.remove('active'));
+    
+    document
+        .querySelectorAll('button[data-mode]')
+        .forEach(e => e.classList.add('notActive'));
+    document.querySelector(`[data-mode="${mode}"]`).classList.remove('notActive');
     document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
-    document.body.style.backgroundColor = `var(--${mode})`;
 
     updateClock();
 };
