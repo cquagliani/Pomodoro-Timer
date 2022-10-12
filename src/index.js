@@ -107,6 +107,7 @@ function startTimer() {
         playButton.dataset.action = 'pause';
         playButton.classList.add('active');
 
+        // Tracks continuous timer
         interval = setInterval(function() {
             timer.remainingTime = getRemainingTime(endTime);
             updateClock();
