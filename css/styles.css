@@ -1,0 +1,313 @@
+/* :root {
+  --pomodoro: hsl(223, 25%, 40%);
+  --shortBreak: hsl(48, 23%, 40%);
+  --longBreak: hsl(105, 16%, 40%);
+} */
+
+/* Body */
+body {
+  background: linear-gradient(-45deg, #9b2abd, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 50s ease infinite;
+  font-family: 'Trade Winds', cursive;
+  font-weight: 600;
+  text-align: center;
+  color: black;
+}
+
+/* Classes (in order seen) */
+
+.contentCard {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.2px);
+  -webkit-backdrop-filter: blur(9.2px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+.mainCard {
+  display: flex;
+  flex-direction: column;
+  width: 100;
+  padding: 20px 150px 20px 150px;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid rgba(0, 0, 0, 0.95); */
+  border-radius: 65px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.mainTitle {
+  color:black;
+  font-size: 55px;
+  font-weight: bold;
+}
+
+.roundCount>h2 {
+  font-size: 25px;
+  color:rgb(0, 0, 0);
+  letter-spacing: -0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.currTimer {
+  font-size: 100px;
+  letter-spacing: -0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.timerActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.timerActions>button {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  width: 50px;
+  height: 50px;
+}
+
+.timerActions button:hover {
+  background-color:rgb(224, 224, 224);
+}
+
+.displayTitle {
+  color:#000;
+  opacity: 0.6;
+}
+
+/* IDs (in order seen) */
+
+#mainWrapper {
+  height: 100vh;
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #mainCardPomodoro {
+
+}
+
+#pomodoroTitle {
+
+}
+
+#pomodoroCurrTimer {
+
+}
+
+#currMin {
+
+}
+
+#currSec {
+
+} */
+
+#playButton {
+  width: 80px;
+  height: 80px;
+}
+
+/* #playPomodoro {
+
+}
+
+#pausePomodoro {
+
+}
+
+#resetPomodoro {
+
+}
+
+#settingsPomodoro {
+
+} */
+
+#timerSelection {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+#timerSelection>div {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+#timerSelection>div>button {
+  height: 100px;
+  width: 130px;
+  color:#fff;
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+  line-height: 1.75;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  padding: 0.5rem, 0.5rem;
+  font-size: 1.5rem;
+}
+
+#timerSelection>div>button>h2 {
+  font-size: 15px;
+}
+
+#timerSelection>div button:hover{
+  background-color:rgb(224, 224, 224);
+  color:#000;
+}
+
+#simpleFooter {
+  background: transparent;  
+  width: 100vw;
+  height: 7vh;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#simpleFooter>a {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#simpleFooter a {
+  color:inherit;
+}
+
+#simpleFooter a:hover {
+  color: rgba(32, 32, 32, 0.95);
+}
+
+/* Stopped after pomodoro. Need to add other screens later. */
+
+/* Miscellaneous */
+
+.form-check {
+  display: block;
+  min-height: 1.25rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+}
+
+.mainCard .form-check-input {
+  display: none;
+}
+
+.form-check-input:checked[type=radio] {
+  background-color: rgb(255, 255, 255);
+  /* background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%272%27 fill=%27%23fff%27/%3e%3c/svg%3e"); */
+}
+
+.form-check-input:checked {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.form-check-input[type=radio] {
+  border-radius: 50%;
+}
+
+.form-check .form-check-input {
+  float: left;
+  margin-left: -1.5em;
+}
+
+.form-check-input {
+  width: 1em;
+  height: 1em;
+  margin-top: 0.125em;
+  vertical-align: top;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid rgba(255,255,255,.95);
+  appearance: none;
+}
+
+input, button, select, optgroup, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+input[type="radio" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 0px 5px;
+  padding: initial;
+  border: initial;
+}
+
+input {
+  writing-mode: horizontal-tb !important;
+  font-style: none;
+  font-variant-ligatures: none;
+  font-variant-caps: none;
+  font-variant-numeric: none;
+  font-variant-east-asian: none;
+  font-weight: none;
+  font-stretch: none;
+  font-size: none;
+  font-family: none;
+  text-rendering: auto;
+  color: fieldtext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  background-color: field;
+  margin: 0em;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/* END */
+
+.invisible {
+  visibility: hidden;
+}
