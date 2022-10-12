@@ -4,10 +4,19 @@ const playButton = document.querySelector('#playButton');
 const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
 const mainTitle = document.getElementById('mainTitle');
+const saveSettings = document.getElementById('saveUserSettings');
+const pomodoroLength = document.getElementById('pomodoroLength');
+const shortBreakLength = document.getElementById('shortBreakLength');
+const longBreakLength = document.getElementById('longBreakLength');
+const maxRounds = document.getElementById('roundsCount');
+const displayPomodoro = document.getElementById('displayPomodoro');
+const displaySB = document.getElementById('displayShortBreak');
+const displayLB = document.getElementById('displayLongBreak');
+const displayRoundCount = document.getElementById('displayRounds');
 const timer = {
-    pomodoro: .1,
-    shortBreak: .1,
-    longBreak: .1,
+    pomodoro: 25,
+    shortBreak: 5,
+    longBreak: 30,
     longBreakInterval: 4,
     rounds: 0,
     maxRounds: 4
@@ -23,6 +32,24 @@ let interval;
 function displayRounds() {
     const roundsDisplay = document.getElementById('roundsDisplay');
     roundsDisplay.textContent = "Round " + timer.rounds;
+}
+
+/* Settings save button event listener */
+if (saveSettings) {
+    saveSettings.addEventListener('click', () => {
+        // Set user preferences to the timer object
+        timer.pomodoro = pomodoroLength.value;
+        timer.shortBreak = shortBreakLength.value;
+        timer.longBreak = longBreakLength.value;
+        timer.maxRounds = roundsCount.value;
+        resetTimer();
+
+        // Update display buttons
+        displayPomodoro.textContent = pomodoroLength.value + ":00";
+        displaySB.textContent = shortBreakLength.value + ":00";
+        displayLB.textContent = longBreakLength.value + ":00";
+        displayRoundCount.textContent = roundsCount.value;
+    });
 }
 
 /* Play Button event listener */
@@ -107,6 +134,7 @@ function startTimer() {
         playButton.dataset.action = 'pause';
         playButton.classList.add('active');
 
+        // Tracks continuous timer
         interval = setInterval(function() {
             timer.remainingTime = getRemainingTime(endTime);
             updateClock();
@@ -154,6 +182,7 @@ function resetTimer() {
         playButton.click();
     }
 }
+
 if (resetButton) {
     resetButton.addEventListener('click', (event) => {
         resetTimer();

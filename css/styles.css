@@ -99,20 +99,22 @@ body {
 #timerSelection>div>button {
   height: 100px;
   width: 130px;
-  /* color:#fff; */
   display: inline-block;
   vertical-align: middle;
   user-select: none;
   line-height: 1.75;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   padding: 0.5rem, 0.5rem;
-  font-size: 1.5rem;
   border: none;
   border-radius:inherit;
 }
 
-#timerSelection>div>button>h2 {
+#timerSelection>div>button>h2:nth-of-type(1) {
   font-size: 15px;
+}
+
+#timerSelection>div>button>h2:nth-of-type(2) {
+  font-size: 1.5rem;
 }
 
 #simpleFooter {
