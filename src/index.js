@@ -1,4 +1,4 @@
-// Select all elements
+// Select all elements needed for program
 const playButton = document.querySelector('#playButton');
 const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
@@ -70,7 +70,6 @@ function handleMode(event) {
     if (!mode) {
         return;
     }
-
     switchMode(mode);
     stopTimer();
 }
@@ -144,7 +143,11 @@ if (resetButton) {
         timer.rounds = 0;
         switchMode('pomodoro');
         displayRounds();
-        playButton.click();
+
+        // If reset button is clicked while timer is running, click the playButton. Otherwise, leave it alone. 
+        if (playButton.dataset.action === 'pause') {
+            playButton.click();
+        }
     });
 }
 
