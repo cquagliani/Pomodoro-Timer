@@ -8,7 +8,8 @@ const timer = {
     shortBreak: .1,
     longBreak: .1,
     longBreakInterval: 4,
-    rounds: 0
+    rounds: 0,
+    maxRounds: 4
 };
 
 let interval;
@@ -63,6 +64,7 @@ function switchMode(mode) {
     document
         .querySelectorAll('button[data-mode]')
         .forEach(e => e.classList.add('notActive'));
+
     document.querySelector(`[data-mode="${mode}"]`).classList.remove('notActive');
     document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
 
@@ -86,41 +88,46 @@ function displayRounds() {
 
 // Start timer
 function startTimer() {
-    let { total } = timer.remainingTime;
-    const endTime = Date.parse(new Date()) + total * 1000;
+    // If set amount of rounds has not been reached, run the timer. Otherwise, reset the rounds and timer.
+    if (timer.rounds <= timer.maxRounds) { 
+        let { total } = timer.remainingTime;
+        const endTime = Date.parse(new Date()) + total * 1000;
 
-    const roundsDisplay = document.getElementById('roundsDisplay');
-    if (timer.mode === 'pomodoro' && timer.rounds === 0) {
-        timer.rounds++;
+        const roundsDisplay = document.getElementById('roundsDisplay');
+        if (timer.mode === 'pomodoro' && timer.rounds === 0) {
+            timer.rounds++;
+        }
+        displayRounds();
+
+        playButton.dataset.action = 'pause';
+        playButton.classList.add('active');
+
+        interval = setInterval(function() {
+            timer.remainingTime = getRemainingTime(endTime);
+            updateClock();
+
+            total = timer.remainingTime.total;
+            if (total <= 0) {
+            clearInterval(interval);
+
+            switch (timer.mode) {
+                case 'pomodoro':
+                    if (timer.rounds % timer.longBreakInterval === 0) {
+                        switchMode('longBreak');
+                    } else {
+                        switchMode('shortBreak');
+                    }
+                break;
+                default:
+                    switchMode('pomodoro');
+            }
+
+            startTimer();
+            }
+        }, 1000);
+    } else {
+        resetButton.click();
     }
-    displayRounds();
-
-    playButton.dataset.action = 'pause';
-    playButton.classList.add('active');
-
-    interval = setInterval(function() {
-        timer.remainingTime = getRemainingTime(endTime);
-        updateClock();
-
-        total = timer.remainingTime.total;
-        if (total <= 0) {
-        clearInterval(interval);
-
-        switch (timer.mode) {
-            case 'pomodoro':
-                if (timer.rounds % timer.longBreakInterval === 0) {
-                    switchMode('longBreak');
-                } else {
-                    switchMode('shortBreak');
-                }
-            break;
-            default:
-                switchMode('pomodoro');
-        }
-
-        startTimer();
-        }
-    }, 1000);
 }
 
 // Stop timer
@@ -142,7 +149,7 @@ function updateClock() {
     sec.textContent = seconds;
 }
 
-// Restart timer
+// Reset timer
 if (resetButton) {
     resetButton.addEventListener('click', (event) => {
         timer.rounds = 0;
