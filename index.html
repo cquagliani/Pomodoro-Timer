@@ -20,8 +20,8 @@
         <!-- Main Content Card -->
         <div class="contentCard mainCard" id="mainCardPomodoro">
             <!-- Main Title -->
-            <div class="mainTitle">
-                <h1 id="pomodoroTitle">Pomodoro Timer</h1>
+            <div>
+                <h1 id="mainTitle">Pomodoro Timer</h1>
             </div>
 
             <!-- Round Count -->
@@ -30,7 +30,7 @@
             </div>
 
             <!-- Current Timer Display -->
-            <div class="currTimer" id="pomodoroCurrTimer">
+            <div class="currTimer">
                 <span id="currMin"></span>
                 <span id="colon">:</span>
                 <span id="currSec"></span>
@@ -40,6 +40,7 @@
             <div class="timerActions">
                 <!-- Reset Timer Button -->
                 <button id="resetButton" class="contentCard"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" /><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" /></svg></button>
+                
                 <!-- Play/Pause Button -->
                 <button id="playButton" class="contentCard" data-action="play">
                     <svg 
@@ -62,29 +63,27 @@
             <div></div>
         </div>
 
-        <!-- <div id="pomodoro-durations">
-            <div class="contentCard form-check"><input class="form-check-input" type="radio" name="timerType" id="resetButton" value="pomodoro" checked="checked"><label class="form-check-label btn" for="exampleRadios1">Pomodoro</label></div>
-            <div class="contentCard form-check"><input class="form-check-input" type="radio" name="timerType" id="playButton" value="short"><label class="form-check-label btn" for="exampleRadios2">Short Break</label></div>
-            <div class="contentCard form-check"><input class="form-check-input" type="radio" name="timerType" id="settingsButton" value="long"><label class="form-check-label btn" for="exampleRadios3">Long Break</label></div>
-        </div> -->
-
-        <!-- <div id="displayPomodoro" class="contentCard">
-            <button data-mode="pomodoro"><h2 class="displayTitle">Pomodoro</h2>25:00</button>
-        </div> -->
-
         <!-- Timer Preferences -->
         <div id="timerSelection">
-            <div>
-                <button id="displayPomodoro" class="contentCard" data-mode="pomodoro" disabled><h2 class="displayTitle">Pomodoro</h2>25:00</button>
+            <div id="displayPomodoro" class="contentCard displayCard">
+                <button data-mode="pomodoro" disabled>
+                    <h2 class="displayTitle">Pomodoro</h2>25:00
+                </button>
             </div>
-            <div>
-                <button id="displayShortBreak" class="contentCard" data-mode="shortBreak" disabled><h2 class="displayTitle">Short Break</h2>5:00</button>
+            <div id="displayShortBreak" class="contentCard displayCard">
+                <button data-mode="shortBreak" disabled>
+                    <h2 class="displayTitle">Short Break</h2>5:00
+                </button>
             </div>
-            <div>
-                <button id="displayLongBreak" class="contentCard" data-mode="longBreak" disabled><h2 class="displayTitle">Long Break</h2>15:00</button>
+            <div id="displayLongBreak" class="contentCard displayCard">
+                <button data-mode="longBreak" disabled>
+                    <h2 class="displayTitle">Long Break</h2>15:00
+                </button>
             </div>
-            <div>
-                <button id="displayRounds" class="contentCard" data-mode="rounds" disabled><h2 class="displayTitle">Rounds</h2>4</button>
+            <div  id="displayRounds" class="contentCard displayCard" >
+                <button data-mode="rounds" disabled>
+                    <h2 class="displayTitle">Rounds</h2>4
+                </button>
             </div>
         </div>
 
