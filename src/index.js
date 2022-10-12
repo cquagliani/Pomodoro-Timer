@@ -1,4 +1,5 @@
-// Select all elements needed for program
+/* ----- START ELEMENTS ----- */
+/* Select all elements needed for program */
 const playButton = document.querySelector('#playButton');
 const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
@@ -14,7 +15,17 @@ const timer = {
 
 let interval;
 
-// Handle play/pause selection
+/* ----- END ELEMENTS ----- */
+
+/* ----- START SUPPORTING FUNCTIONS ----- */
+
+// Displays the current round #
+function displayRounds() {
+    const roundsDisplay = document.getElementById('roundsDisplay');
+    roundsDisplay.textContent = "Round " + timer.rounds;
+}
+
+/* Play Button event listener */
 if (playButton) {
     playButton.addEventListener('click', () => {
         playButton
@@ -27,36 +38,15 @@ if (playButton) {
         const { action } = playButton.dataset;
 
         if (action === 'play') {
-        startTimer();
+            startTimer();
         } else {
-        stopTimer();
+            stopTimer();
         }
     });
 }
 
-// Handles change between different timers
-function switchMode(mode) {
-    timer.mode = mode;
-    timer.remainingTime = {
-        total: timer[mode] * 60,
-        minutes: timer[mode],
-        seconds: 0,
-    }
-
-    switch (timer.mode) {
-        case 'pomodoro':
-            mainTitle.textContent = "Pomodoro Timer";
-            timer.rounds++;
-            break;
-        case 'shortBreak':
-            mainTitle.textContent = "Short Break";
-            break;
-        case 'longBreak':
-            mainTitle.textContent = "Long Break";
-            break;
-    }
-
-    // "Activates" a button to indicate which timer is live
+/* "Activates" a button to indicate which timer is live */
+function activateButton(mode) {
     document
         .querySelectorAll('button[data-mode]')
         .forEach(e => e.classList.remove('active'));
@@ -67,26 +57,41 @@ function switchMode(mode) {
 
     document.querySelector(`[data-mode="${mode}"]`).classList.remove('notActive');
     document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
-
-    updateClock();
-};
-
-function handleMode(event) {
-    const { mode } = event.target.dataset;
-
-    if (!mode) {
-        return;
-    }
-    switchMode(mode);
-    stopTimer();
 }
 
-function displayRounds() {
-    const roundsDisplay = document.getElementById('roundsDisplay');
-    roundsDisplay.textContent = "Round " + timer.rounds;
+/* ----- END SUPPORTING FUNCTIONS ----- */
+
+/* ----- START TIMER FUNCTIONS ----- */
+
+/* Updates the time displayed to the user */
+function updateClock() {
+    const { remainingTime } = timer;
+    const minutes = `${remainingTime.minutes}`.padStart(2, '0');
+    const seconds = `${remainingTime.seconds}`.padStart(2, '0');
+
+    const min = document.getElementById('currMin');
+    const sec = document.getElementById('currSec');
+    min.textContent = minutes;
+    sec.textContent = seconds;
 }
 
-// Start timer
+/* Returns remaining time (continuously called) */
+function getRemainingTime(endTime) {
+    const currentTime = Date.parse(new Date());
+    const difference = endTime - currentTime;
+
+    const total = Number.parseInt(difference / 1000, 10);
+    const minutes = Number.parseInt((total / 60) % 60, 10);
+    const seconds = Number.parseInt(total % 60, 10);
+
+    return {
+        total,
+        minutes,
+        seconds,
+    };
+}
+
+/* Start timer */
 function startTimer() {
     // If set amount of rounds has not been reached, run the timer. Otherwise, reset the rounds and timer.
     if (timer.rounds <= timer.maxRounds) { 
@@ -126,11 +131,11 @@ function startTimer() {
             }
         }, 1000);
     } else {
-        resetButton.click();
+        resetTimer();
     }
 }
 
-// Stop timer
+/* Stop timer */
 function stopTimer() {
     clearInterval(interval);
 
@@ -138,50 +143,52 @@ function stopTimer() {
     playButton.classList.remove('active');
 }
 
-function updateClock() {
-    const { remainingTime } = timer;
-    const minutes = `${remainingTime.minutes}`.padStart(2, '0');
-    const seconds = `${remainingTime.seconds}`.padStart(2, '0');
+/* Reset timer */
+function resetTimer() {
+    timer.rounds = 0;
+    switchMode('pomodoro');
+    displayRounds();
 
-    const min = document.getElementById('currMin');
-    const sec = document.getElementById('currSec');
-    min.textContent = minutes;
-    sec.textContent = seconds;
+    // If reset button is clicked while timer is running, click the playButton. Otherwise, leave it alone. 
+    if (playButton.dataset.action === 'pause') {
+        playButton.click();
+    }
 }
-
-// Reset timer
 if (resetButton) {
     resetButton.addEventListener('click', (event) => {
-        timer.rounds = 0;
-        switchMode('pomodoro');
-        displayRounds();
-
-        // If reset button is clicked while timer is running, click the playButton. Otherwise, leave it alone. 
-        if (playButton.dataset.action === 'pause') {
-            playButton.click();
-        }
+        resetTimer();
     });
 }
 
-// Return remaining time (continuously called)
-function getRemainingTime(endTime) {
-    const currentTime = Date.parse(new Date());
-    const difference = endTime - currentTime;
+/* Handles change between different timers */
+function switchMode(mode) {
+    timer.mode = mode;
+    timer.remainingTime = {
+        total: timer[mode] * 60,
+        minutes: timer[mode],
+        seconds: 0,
+    }
 
-    const total = Number.parseInt(difference / 1000, 10);
-    const minutes = Number.parseInt((total / 60) % 60, 10);
-    const seconds = Number.parseInt(total % 60, 10);
+    switch (timer.mode) {
+        case 'pomodoro':
+            mainTitle.textContent = "Pomodoro Timer";
+            timer.rounds++;
+            break;
+        case 'shortBreak':
+            mainTitle.textContent = "Short Break";
+            break;
+        case 'longBreak':
+            mainTitle.textContent = "Long Break";
+            break;
+    }
 
-    return {
-        total,
-        minutes,
-        seconds,
-    };
-}
+    activateButton(timer.mode);
+    updateClock();
+};
 
-// Track progress of the timer shown on the current card (want to implement a liquid fill animation in the current card)
+/* ----- END TIMER FUNCTIONS ----- */
 
-// On page load/reload, set pomodoro timer as default card
+/* On page load/reload, set pomodoro timer as default card */
 document.addEventListener('DOMContentLoaded', () => {
     switchMode('pomodoro');
 });
