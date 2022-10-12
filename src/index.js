@@ -5,6 +5,7 @@ const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
 const mainTitle = document.getElementById('mainTitle');
 const saveSettings = document.getElementById('saveUserSettings');
+const resetSettings = document.getElementById('resetUserSettings');
 const pomodoroLength = document.getElementById('pomodoroLength');
 const shortBreakLength = document.getElementById('shortBreakLength');
 const longBreakLength = document.getElementById('longBreakLength');
@@ -28,10 +29,18 @@ let interval;
 
 /* ----- START SUPPORTING FUNCTIONS ----- */
 
-// Displays the current round #
+/* Displays the current round */
 function displayRounds() {
     const roundsDisplay = document.getElementById('roundsDisplay');
     roundsDisplay.textContent = "Round " + timer.rounds;
+}
+
+/* Updates display buttons */
+function updateDisplayBtns() {
+    displayPomodoro.textContent = pomodoroLength.value + ":00";
+    displaySB.textContent = shortBreakLength.value + ":00";
+    displayLB.textContent = longBreakLength.value + ":00";
+    displayRoundCount.textContent = roundsCount.value;
 }
 
 /* Settings save button event listener */
@@ -43,12 +52,19 @@ if (saveSettings) {
         timer.longBreak = longBreakLength.value;
         timer.maxRounds = roundsCount.value;
         resetTimer();
+        updateDisplayBtns();
+    });
+}
 
-        // Update display buttons
-        displayPomodoro.textContent = pomodoroLength.value + ":00";
-        displaySB.textContent = shortBreakLength.value + ":00";
-        displayLB.textContent = longBreakLength.value + ":00";
-        displayRoundCount.textContent = roundsCount.value;
+/* Reset settings button event listener */
+if (resetSettings) {
+    resetSettings.addEventListener('click', () => {
+        pomodoroLength.value = 25;
+        shortBreakLength.value = 5;
+        longBreakLength.value = 30;
+        roundsCount.value = 4;
+        resetTimer();
+        updateDisplayBtns();
     });
 }
 
