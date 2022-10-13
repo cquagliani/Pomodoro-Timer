@@ -50,7 +50,7 @@ function updateDisplayBtns() {
 function displayToast() {
     switch (timer.mode) {
         case 'pomodoro':
-            if (timer.rounds > 1 && timer.rounds < timer.maxRounds) {
+            if (timer.rounds > 1 && timer.rounds <= timer.maxRounds) {
                 // post back to work toast
                 const toast1 = new bootstrap.Toast(workToast);
                 toast1.show();
