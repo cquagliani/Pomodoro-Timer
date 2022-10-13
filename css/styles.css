@@ -93,16 +93,24 @@ body {
 
 #timerSelection {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-top: 30px;
 }
 
-#timerSelection>div {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+#firstTwo, #secondTwo {
+  display: flex;
+  flex-direction: row;
 }
 
-#timerSelection>div>button {
+#timerSelection>div>div {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#timerSelection>div>div>button {
   height: 100px;
   width: 130px;
   display: inline-block;
@@ -115,11 +123,11 @@ body {
   border-radius:inherit;
 }
 
-#timerSelection>div>button>h2:nth-of-type(1) {
+#timerSelection>div>div>button>h2:nth-of-type(1) {
   font-size: 15px;
 }
 
-#timerSelection>div>button>h2:nth-of-type(2) {
+#timerSelection>div>div>button>h2:nth-of-type(2) {
   font-size: 1.5rem;
 }
 
@@ -170,4 +178,108 @@ body {
 
 .notActive {
   color:#fff;
+}
+
+
+/* X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 1px) {
+  .mainCard {
+    padding: 20px 90px 20px 90px;
+  }
+
+  .currTimer {
+    font-size: 75px;
+    letter-spacing: -0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #timerSelection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #timerSelection>div>div {
+    margin: 0.5rem;
+  }
+  
+  #firstTwo, #secondTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .mainCard {
+    padding: 20px 90px 20px 90px;
+  }
+
+  .currTimer {
+    font-size: 75px;
+    letter-spacing: -0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #timerSelection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #timerSelection>div>div {
+    margin: 0.5rem;
+  }
+  
+  #firstTwo, #secondTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+  .mainCard {
+    padding: 20px 90px 20px 90px;
+  }
+
+  .currTimer {
+    font-size: 75px;
+    letter-spacing: -0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  #timerSelection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #timerSelection>div>div {
+    margin: 0.5rem;
+  }
+  
+  #firstTwo, #secondTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+  .mainCard {
+    padding: 20px 90px 20px 90px;
+  }
+
+  .currTimer {
+    font-size: 75px;
+    letter-spacing: -0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
 }
