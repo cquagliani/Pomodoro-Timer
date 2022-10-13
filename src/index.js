@@ -46,7 +46,7 @@ function updateDisplayBtns() {
     displayRoundCount.textContent = roundsCount.value;
 }
 
-/* Post the appropriate Bootstrap Toast */
+/* Posts the appropriate Bootstrap Toast */
 function displayToast() {
     switch (timer.mode) {
         case 'pomodoro':
