@@ -33,6 +33,11 @@ body {
   visibility: hidden;
 }
 
+.toastIcon {
+  margin-right: 10px;
+  fill: rgb(255, 0, 0);
+}
+
 .roundCount>h2 {
   font-size: 25px;
   color:rgb(0, 0, 0);

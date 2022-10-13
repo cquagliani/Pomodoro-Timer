@@ -14,10 +14,13 @@ const displayPomodoro = document.getElementById('displayPomodoro');
 const displaySB = document.getElementById('displayShortBreak');
 const displayLB = document.getElementById('displayLongBreak');
 const displayRoundCount = document.getElementById('displayRounds');
+const sbToast = document.getElementById('shortBreakToast');
+const lbToast = document.getElementById('longBreakToast');
+const workToast = document.getElementById('workToast');
 const timer = {
-    pomodoro: 25,
-    shortBreak: 5,
-    longBreak: 30,
+    pomodoro: .1,
+    shortBreak: .1,
+    longBreak: .1,
     longBreakInterval: 4,
     rounds: 0,
     maxRounds: 4
@@ -41,6 +44,29 @@ function updateDisplayBtns() {
     displaySB.textContent = shortBreakLength.value + ":00";
     displayLB.textContent = longBreakLength.value + ":00";
     displayRoundCount.textContent = roundsCount.value;
+}
+
+/* Post the appropriate Bootstrap Toast */
+function displayToast() {
+    switch (timer.mode) {
+        case 'pomodoro':
+            if (timer.rounds > 1 && timer.rounds < timer.maxRounds) {
+                // post back to work toast
+                const toast1 = new bootstrap.Toast(workToast);
+                toast1.show();
+            } 
+            break;
+        case 'shortBreak':
+            // post short break toast
+            const toast2 = new bootstrap.Toast(sbToast);
+            toast2.show();
+            break;
+        case 'longBreak':
+            // post long break toast
+            const toast3 = new bootstrap.Toast(lbToast);
+            toast3.show();
+            break;
+    }
 }
 
 /* Settings save button event listener */
@@ -227,6 +253,7 @@ function switchMode(mode) {
             break;
     }
 
+    displayToast();
     activateButton(timer.mode);
     updateClock();
 };
