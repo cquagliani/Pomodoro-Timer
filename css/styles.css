@@ -21,6 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100;
+  margin-top: 1.5rem;
   padding: 20px 150px 20px 150px;
   justify-content: center;
   align-items: center;
@@ -101,6 +102,7 @@ body {
 #firstTwo, #secondTwo {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 
 #timerSelection>div>div {
@@ -124,6 +126,7 @@ body {
 }
 
 #timerSelection>div>div>button>h2:nth-of-type(1) {
+
   font-size: 15px;
 }
 
@@ -148,6 +151,7 @@ body {
 #simpleFooter>a {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
 
@@ -189,14 +193,10 @@ body {
 
   .currTimer {
     font-size: 75px;
-    letter-spacing: -0.15rem;
-    font-variant-numeric: tabular-nums;
   }
 
   #timerSelection {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   #timerSelection>div>div {
@@ -204,9 +204,7 @@ body {
   }
   
   #firstTwo, #secondTwo {
-    display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
   }
 }
 
@@ -218,14 +216,10 @@ body {
 
   .currTimer {
     font-size: 75px;
-    letter-spacing: -0.15rem;
-    font-variant-numeric: tabular-nums;
   }
 
   #timerSelection {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   #timerSelection>div>div {
@@ -233,41 +227,27 @@ body {
   }
   
   #firstTwo, #secondTwo {
-    display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) {}
-
 /* Large devices (desktops, 992px and up) */
-@media (max-width: 992px) {
+@media (max-width: 768px) and (max-width: 992px) {
   .mainCard {
     padding: 20px 90px 20px 90px;
   }
 
   .currTimer {
     font-size: 75px;
-    letter-spacing: -0.15rem;
-    font-variant-numeric: tabular-nums;
   }
 
   #timerSelection {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   #timerSelection>div>div {
     margin: 0.5rem;
-  }
-  
-  #firstTwo, #secondTwo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
   }
 }
 
@@ -279,7 +259,37 @@ body {
 
   .currTimer {
     font-size: 75px;
-    letter-spacing: -0.15rem;
-    font-variant-numeric: tabular-nums;
   }
 }
+
+
+@media (max-height: 600px) {
+  .currTimer {
+    font-size: 75px;
+  }
+
+  #timerSelection {
+    flex-direction: row;
+    margin-bottom: 1.5%;
+  }
+
+  #simpleFooter {
+    background: fixed;  
+    margin-bottom: 1%;
+  }
+}
+
+@media (max-height: 600px) and (max-width: 576px) {
+  #timerSelection {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  #timerSelection>div>div {
+    margin: 0.5rem;
+  }
+  
+  #firstTwo, #secondTwo {
+    flex-direction: row;
+  }
+} 
