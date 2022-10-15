@@ -17,13 +17,15 @@ const displayRoundCount = document.getElementById('displayRounds');
 const sbToast = document.getElementById('shortBreakToast');
 const lbToast = document.getElementById('longBreakToast');
 const workToast = document.getElementById('workToast');
+const timerDoneAudio = new Audio('assets/ES_Piano Arpeggio 9 - SFX Producer.mp3');
 const timer = {
-    pomodoro: .1,
-    shortBreak: .1,
-    longBreak: .1,
+    pomodoro: .2,
+    shortBreak: .20,
+    longBreak: .20,
     longBreakInterval: 4,
     rounds: 0,
-    maxRounds: 4
+    maxRounds: 4,
+    finalRoundCount: 0
 };
 
 let interval;
@@ -67,6 +69,12 @@ function displayToast() {
             toast3.show();
             break;
     }
+}
+
+/* To play audio at end of each session */ 
+function playAudio() {
+    timerDoneAudio.volume = 0.3;
+    timerDoneAudio.play();
 }
 
 /* Settings save button event listener */
@@ -149,6 +157,10 @@ function getRemainingTime(endTime) {
     const currentTime = Date.parse(new Date());
     const difference = endTime - currentTime;
 
+    if (difference === 0) {
+        playAudio();
+    }
+
     const total = Number.parseInt(difference / 1000, 10);
     const minutes = Number.parseInt((total / 60) % 60, 10);
     const seconds = Number.parseInt(total % 60, 10);
@@ -183,22 +195,21 @@ function startTimer() {
 
             total = timer.remainingTime.total;
             if (total <= 0) {
-            clearInterval(interval);
+                clearInterval(interval);
 
-            switch (timer.mode) {
-                case 'pomodoro':
-                    if (timer.rounds % timer.longBreakInterval === 0) {
-                        switchMode('longBreak');
-                    } else {
-                        switchMode('shortBreak');
-                    }
-                break;
-                default:
-                    switchMode('pomodoro');
-            }
-
-            startTimer();
-            }
+                switch (timer.mode) {
+                    case 'pomodoro':
+                        if (timer.rounds % timer.longBreakInterval === 0) {
+                            switchMode('longBreak');
+                        } else {
+                            switchMode('shortBreak');
+                        }
+                    break;
+                    default:
+                        switchMode('pomodoro');
+                }
+                startTimer();
+            } 
         }, 1000);
     } else {
         resetTimer();
