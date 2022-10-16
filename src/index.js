@@ -1,31 +1,41 @@
 /* ----- START ELEMENTS ----- */
-/* Select all elements needed for program */
+
+const mainTitle = document.getElementById('mainTitle');
+const roundsDisplay = document.getElementById('roundsDisplay');
+
+/* Timer action buttons*/
 const playButton = document.querySelector('#playButton');
 const resetButton = document.getElementById('resetButton');
 const settingsButton = document.getElementById('settingsButton');
-const mainTitle = document.getElementById('mainTitle');
+
+/* Settings modal buttons/inputs */ 
 const saveSettings = document.getElementById('saveUserSettings');
 const resetSettings = document.getElementById('resetUserSettings');
 const pomodoroLength = document.getElementById('pomodoroLength');
 const shortBreakLength = document.getElementById('shortBreakLength');
 const longBreakLength = document.getElementById('longBreakLength');
 const maxRounds = document.getElementById('roundsCount');
+
+/* Display cards */
 const displayPomodoro = document.getElementById('displayPomodoro');
 const displaySB = document.getElementById('displayShortBreak');
 const displayLB = document.getElementById('displayLongBreak');
 const displayRoundCount = document.getElementById('displayRounds');
+
+/* Notification toasts */
 const sbToast = document.getElementById('shortBreakToast');
 const lbToast = document.getElementById('longBreakToast');
 const workToast = document.getElementById('workToast');
 const timerDoneAudio = new Audio('assets/ES_Piano Arpeggio 9 - SFX Producer.mp3');
+
+/* Timer object */
 const timer = {
     pomodoro: .2,
     shortBreak: .20,
     longBreak: .20,
     longBreakInterval: 4,
     rounds: 0,
-    maxRounds: 4,
-    finalRoundCount: 0
+    maxRounds: 4
 };
 
 let interval;
@@ -36,7 +46,6 @@ let interval;
 
 /* Displays the current round */
 function displayRounds() {
-    const roundsDisplay = document.getElementById('roundsDisplay');
     roundsDisplay.textContent = "Round " + timer.rounds;
 }
 
