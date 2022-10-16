@@ -188,7 +188,6 @@ function startTimer() {
         let { total } = timer.remainingTime;
         const endTime = Date.parse(new Date()) + total * 1000;
 
-        const roundsDisplay = document.getElementById('roundsDisplay');
         if (timer.mode === 'pomodoro' && timer.rounds === 0) {
             timer.rounds++;
         }
