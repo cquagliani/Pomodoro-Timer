@@ -163,6 +163,28 @@ body {
   color: rgba(32, 32, 32, 0.95);
 }
 
+.progress {
+  background: rgba(255,255,255,0.1);
+  justify-content: flex-start;
+  border-radius: 20px;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 5px;
+  display: flex;
+  height: 20px;
+  width: 400px;
+}
+
+.progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 20px;
+  background: rgb(255, 0, 0);
+  height: 30px;
+  width: 0;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -206,6 +228,10 @@ body {
   #firstTwo, #secondTwo {
     flex-direction: row;
   }
+
+  .progress {
+    width: 300px;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -229,6 +255,10 @@ body {
   #firstTwo, #secondTwo {
     flex-direction: row;
   }
+
+  .progress {
+    width: 300px;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -249,15 +279,11 @@ body {
   #timerSelection>div>div {
     margin: 0.5rem;
   }
-}
 
-/* X-Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
-  .currTimer {
-    font-size: 75px;
+  .progress {
+    width: 300px;
   }
 }
-
 
 @media (max-height: 600px) {
   .mainCard {
@@ -301,3 +327,4 @@ body {
     flex-direction: row;
   }
 } 
+

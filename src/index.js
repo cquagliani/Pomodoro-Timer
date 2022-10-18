@@ -147,6 +147,17 @@ function activateButton(mode) {
 
 /* ----- END SUPPORTING FUNCTIONS ----- */
 
+/* ----- START PROGRESS BAR ----- */
+
+function updateProgress() {
+    const roundTotal =  timer[mode] * 60;
+    const percentComplete = ((roundTotal - timer.remainingTime) / roundTotal) * 100;
+
+    document.getElementById('progress-value').style.width = percentComplete.toString() + '%';
+}
+
+/* ----- END PROGRESS BAR ----- */
+
 /* ----- START TIMER FUNCTIONS ----- */
 
 /* Updates the time displayed to the user */
@@ -200,6 +211,7 @@ function startTimer() {
         interval = setInterval(function() {
             timer.remainingTime = getRemainingTime(endTime);
             updateClock();
+            updateProgress();
 
             total = timer.remainingTime.total;
             if (total <= 0) {
