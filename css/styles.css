@@ -166,11 +166,10 @@ body {
 .progress {
   background: rgba(255,255,255,0.1);
   justify-content: flex-start;
-  border-radius: 20px;
+  border-radius: 100px;
   align-items: center;
   position: relative;
   margin-bottom: 30px;
-  padding: 0 5px;
   display: flex;
   height: 20px;
   width: 400px;
@@ -179,10 +178,10 @@ body {
 .progress-value {
   animation: load 3s normal forwards;
   box-shadow: 0 10px 40px -10px #fff;
-  border-radius: 20px;
+  border-radius: 100px;
   background: rgb(255, 0, 0);
   height: 30px;
-  width: 0;
+  /* width: 0; */
 }
 
 @keyframes gradient {

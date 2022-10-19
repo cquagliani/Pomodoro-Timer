@@ -30,9 +30,9 @@ const timerDoneAudio = new Audio('assets/ES_Piano Arpeggio 9 - SFX Producer.mp3'
 
 /* Timer object */
 const timer = {
-    pomodoro: .2,
-    shortBreak: .20,
-    longBreak: .20,
+    pomodoro: 20,
+    shortBreak: 20,
+    longBreak: 20,
     longBreakInterval: 4,
     rounds: 0,
     maxRounds: 4
@@ -149,11 +149,14 @@ function activateButton(mode) {
 
 /* ----- START PROGRESS BAR ----- */
 
-function updateProgress() {
-    const roundTotal =  timer[mode] * 60;
-    const percentComplete = ((roundTotal - timer.remainingTime) / roundTotal) * 100;
-
-    document.getElementById('progress-value').style.width = percentComplete.toString() + '%';
+function updateProgress(mode) {
+    const roundTotal =  timer[mode] * 1000;
+    const percentComplete = ((roundTotal - timer.remainingTime.total) / roundTotal) * 100;
+    const progressVal = document.getElementById('progress-value');
+    
+    if (progressVal) {
+        progressVal.style.width = percentComplete.toString() + '%';
+    }
 }
 
 /* ----- END PROGRESS BAR ----- */
@@ -211,7 +214,6 @@ function startTimer() {
         interval = setInterval(function() {
             timer.remainingTime = getRemainingTime(endTime);
             updateClock();
-            updateProgress();
 
             total = timer.remainingTime.total;
             if (total <= 0) {
@@ -224,12 +226,14 @@ function startTimer() {
                         } else {
                             switchMode('shortBreak');
                         }
-                    break;
+                        break;
                     default:
                         switchMode('pomodoro');
+                        break;
                 }
                 startTimer();
             } 
+            updateProgress(timer.mode);
         }, 1000);
     } else {
         resetTimer();
