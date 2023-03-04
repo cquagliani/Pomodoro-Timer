@@ -32,7 +32,7 @@ const timerDoneAudio = new Audio('assets/ES_Piano Arpeggio 9 - SFX Producer.mp3'
 const timer = {
     pomodoro: 25,
     shortBreak: 5,
-    longBreak: 15,
+    longBreak: 30,
     longBreakInterval: 4,
     rounds: 0,
     maxRounds: 4
