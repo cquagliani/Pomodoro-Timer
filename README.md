@@ -13,7 +13,7 @@
 </ol>
 
 <h2>Live Demo</h2>
-<p>You can find a live demo of my Pomodoro Timer <a href="https://www.cquagliani.com">here</a>. Give it a try and let me know what you think!</p>
+<p>You can find a live demo of my Pomodoro Timer <a href="https://cquagliani.github.io/Pomodoro-Timer">here</a>. Give it a try and let me know what you think!</p>
 
 <h2>Technologies Used</h2>
 <ul>
